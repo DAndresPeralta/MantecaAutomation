@@ -1,0 +1,233 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-22T17:41:02.923Z",
+    "end": "2025-01-22T17:41:37.565Z",
+    "duration": 34642,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "128d68e1-40d7-4299-948c-80b2d15a9a87",
+      "title": "",
+      "fullFile": "C:\\Users\\dandr\\OneDrive\\Documentos\\Programacion\\Automatización\\Manteca\\test\\user.test.js",
+      "file": "\\test\\user.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+          "title": "Suite Usuarios",
+          "fullFile": "C:\\Users\\dandr\\OneDrive\\Documentos\\Programacion\\Automatización\\Manteca\\test\\user.test.js",
+          "file": "\\test\\user.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Suite Usuarios\"",
+              "fullTitle": "Suite Usuarios \"before all\" hook in \"Suite Usuarios\"",
+              "timedOut": false,
+              "duration": 9931,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request\n  .post(\"/v1/user/\")\n  .set(\"md-api-key\", \"65JWR38-X374162-GF1QV5J-1E3KK3C\")\n  .set(\"Content-Type\", \"application/json\")\n  .send({\n    name: \"MICAELA GONZALEZ\",\n    email: \"micag61@yahoo.com.ar\",\n    legalId: \"27380640592\",\n    phoneNumber: \"5492615051261\",\n    country: \"Argentina\",\n    civilState: \"SOLTERO\",\n  });\nId = response.body.numberId;\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "a7a9ab5d-5d94-4009-b4a9-45d5296fbc65",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Se debe asignar una cuenta bancaria",
+              "fullTitle": "Suite Usuarios Se debe asignar una cuenta bancaria",
+              "timedOut": false,
+              "duration": 262,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request\n  .post(`/v1/user/${Id}/bankaccount/ARS`)\n  .set(\"md-api-key\", \"65JWR38-X374162-GF1QV5J-1E3KK3C\")\n  .set(\"Content-Type\", \"application/json\")\n  .send({ cbu: \"alias.alias.alias61\", description: \"HSBC\" });\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "5cdab46c-67a3-48a2-a3d1-a5f6cb7b5303",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Se obtiene la url de carga de docs",
+              "fullTitle": "Suite Usuarios Se obtiene la url de carga de docs",
+              "timedOut": false,
+              "duration": 335,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request\n  .post(`/v1/documentation/${Id}/uploadUrl`)\n  .set(\"md-api-key\", \"65JWR38-X374162-GF1QV5J-1E3KK3C\")\n  .set(\"Content-Type\", \"application/json\")\n  .send({\n    docType: \"DNI_FRONT\",\n    fileName: \"pic1.png\",\n  });\nuploadUrl = response.body.url;\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "27be4f05-1c81-4e18-bd1f-5eb841232317",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Se envia el archivo a la url",
+              "fullTitle": "Suite Usuarios Se envia el archivo a la url",
+              "timedOut": false,
+              "duration": 279,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const awsUrl = supertest(`${uploadUrl}`);\nconst imagePath = path.resolve(__dirname, \"../images/pic1.png\");\nconst imageBuffer = fs.readFileSync(imagePath);\nconst response = await awsUrl.put(\"\");\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "aa684ac7-6753-4ca9-a6c3-07eaf054c9c2",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Se obtiene la url de carga de docs 2",
+              "fullTitle": "Suite Usuarios Se obtiene la url de carga de docs 2",
+              "timedOut": false,
+              "duration": 244,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request\n  .post(`/v1/documentation/${Id}/uploadUrl`)\n  .set(\"md-api-key\", \"65JWR38-X374162-GF1QV5J-1E3KK3C\")\n  .set(\"Content-Type\", \"application/json\")\n  .send({\n    docType: \"DNI_BACK\",\n    fileName: \"pic2.png\",\n  });\nuploadUrl2 = response.body.url;\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "7783a0a3-8ada-4e33-9a2d-207bcbd73287",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Se envia el archivo a la url 2",
+              "fullTitle": "Suite Usuarios Se envia el archivo a la url 2",
+              "timedOut": false,
+              "duration": 267,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const awsUrl = supertest(`${uploadUrl2}`);\nconst imagePath = path.resolve(__dirname, \"../images/pic1.png\");\nconst imageBuffer = fs.readFileSync(imagePath);\nconst response = await awsUrl.put(\"\");\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "4681c42b-4335-4831-8e70-7f070a943182",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Se crea un lock de orden",
+              "fullTitle": "Suite Usuarios Se crea un lock de orden",
+              "timedOut": false,
+              "duration": 20364,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await sleep(20000);\nconst data = { coin: \"USDT_ARS\", operation: \"SELL\", userId: Id };\nconst response = await request\n  .post(\"/v1/order/lock\")\n  .set(\"md-api-key\", \"65JWR38-X374162-GF1QV5J-1E3KK3C\")\n  .set(\"Content-Type\", \"application/json\")\n  .send(data);\ncodeOrder = response.body.code;\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "2d2ce4e8-3c8f-4021-88f4-f9e28ecac820",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Transacción",
+              "fullTitle": "Suite Usuarios Transacción",
+              "timedOut": false,
+              "duration": 2928,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await sleep(2000);\nconst response = await request\n  .post(\"/v1/order\")\n  .set(\"md-api-key\", \"65JWR38-X374162-GF1QV5J-1E3KK3C\")\n  .set(\"Content-Type\", \"application/json\")\n  .send({\n    userId: Id,\n    amount: \"10\",\n    coin: \"USDT_ARS\",\n    operation: \"SELL\",\n    code: codeOrder,\n  });\nexpect(response.status).to.equal(200);",
+              "err": {},
+              "uuid": "5df10b9c-72ae-4326-8bb9-4142b4fea90b",
+              "parentUUID": "1bcca0cb-15f9-4181-91e0-44b4da246e0c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5cdab46c-67a3-48a2-a3d1-a5f6cb7b5303",
+            "27be4f05-1c81-4e18-bd1f-5eb841232317",
+            "aa684ac7-6753-4ca9-a6c3-07eaf054c9c2",
+            "7783a0a3-8ada-4e33-9a2d-207bcbd73287",
+            "4681c42b-4335-4831-8e70-7f070a943182",
+            "2d2ce4e8-3c8f-4021-88f4-f9e28ecac820",
+            "5df10b9c-72ae-4326-8bb9-4142b4fea90b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 24679,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 50000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
